@@ -3,8 +3,8 @@
 /*When doing these tasks, we recommend using console.log to test the output of your code to make sure it works correctly.*/
 
 ///////////////Menu Items (MVP)///////////////////
-const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
-const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakfast"};
+const latte = { name: "Cafe Latte", price: 4, category: "Drinks" };
+const breakfastBurrito = { name: "Breakfast Burrito", price: 16, category: "Breakfast" };
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1a: Make a function that builds objects🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Add to the function createMenuItems below so it will create objects following the same format found above for latte and breakfastBurrito (name, price, category).  
@@ -16,11 +16,13 @@ The function should:
 */
 
 
-function createMenuItem(/*Your code here*/){
+function createMenuItem(name, price, category) {
   /*Your code here*/
+
+  return { name, price, category };
 }
 
-
+console.log('task1: ', createMenuItem('tacos, 8, "lunch'));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Invoke your function!
@@ -32,7 +34,9 @@ Test your createMenuItems function by doing the following:
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
 
-
+console.log('task1: ', createMenuItem('pizza', 5, true))
+console.log('task1: ', createMenuItem(true, false, true))
+console.log('task1: ', createMenuItem(5, 7, 8))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the burger object below that automatically calculates price depending on the string received as a parameter. 
@@ -48,24 +52,32 @@ Using the burger object below do the following:
 
 
 const burger = {
-  name: "Burger", 
-  price: 18, 
-  category: "Lunch", 
-  
+  name: "Burger",
+  price: 18,
+  category: "Lunch",
+  discount: function (psn) {
+    if (psn === 'teacher' || psn === "student") {
+      return this.price - (this.price * 0.25);
+    } else if (psn === 'public') {
+      return this.price - (this.price * 0.1);
+    } else {
+      return 'no';
+    }
+  }
 }
 
-
+console.log('task2: ', burger.discount());
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
-    {name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},
-    {name: "Jack", rating: 3, feedback:"A little too hipster for my taste, but the burger was decent, if overpriced"},
-    {name: "Miranda", rating: 4, feedback:"fun trivia and cool vibes"},
-    {name: "Wen", rating: 4.5, feedback:"I don't leave my house often, but when I do, it's for this place. Highly reccomend."},
-    {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
-    {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." },
-    {name: "Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."},
-    {name: "Reyna", rating: 3.5, feedback: ""},
+  { name: "Daniela", rating: 5, feedback: "Beautiful atmosphere and wonderful vegan options!" },
+  { name: "Jack", rating: 3, feedback: "A little too hipster for my taste, but the burger was decent, if overpriced" },
+  { name: "Miranda", rating: 4, feedback: "fun trivia and cool vibes" },
+  { name: "Wen", rating: 4.5, feedback: "I don't leave my house often, but when I do, it's for this place. Highly reccomend." },
+  { name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day." },
+  { name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." },
+  { name: "Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay." },
+  { name: "Reyna", rating: 3.5, feedback: "" },
 ]
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -73,7 +85,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-
+console.log('task3: ', reviews[5].feedback);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -81,6 +93,9 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+reviews[7].feedback = 'this place is chill with really cool people, great for getting work done on weekdays'
+
+console.log('task5', reviews);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -93,8 +108,9 @@ Write a function that creates an object with name, rating, feedback, add the new
 */
 
 
-function addReview(/*Your Code Here */){
+function addReview() {
   /*Your Code Here */
+  reviews.push({ name: 'tylr', rating: 5, feedback: "ok!" });
 }
 
 
@@ -110,11 +126,12 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(array, number) {
+  return `${array[number].name} gave the restaurant a ${array[number].rating} star review, and their feedback was: ${array[number].feedback}`
 }
 
-  
+console.log('task6: ', getReviewByIndex(reviews, 4));
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -129,10 +146,12 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
+function getLastReview(array) {
   /*Your code here*/
-} 
+  return `${array[array.length - 1].name} gave the restaurant a ${array[array.length - 1].rating} star review, and their feedback was: ${array[array.length - 1].feedback}`;
+}
 
+console.log('task7: ', getLastReview(reviews));
 
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
@@ -151,11 +170,31 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+function getReviewByRating(array, rating) {
+  /* code here */
+  let rewievs = []; //Used to hold all of the reviews found.
+  let Acceptableratings = [Math.floor(rating)]; //Used to hold what numbers we are looking for.
+
+  let counter = 0 //Used to help determine how much to add to our numbers.
+  for (let i = 1; i <= 9; i++) {
+    counter = counter + 0.1
+    Acceptableratings[i] = Acceptableratings[0] + counter; //Add the new number to the array.
   }
 
-  
+  //Loop through the array given:
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].rating != null) { //If a rating can be found then
+      if (array[i].rating >= Acceptableratings[0] && array[i].rating < Acceptableratings[Acceptableratings.length - 1]) { //IF the rating fits into the category then
+        rewievs.push(array[i]); //Add it to the reviews array.
+      }
+    }
+  }
+
+  return rewievs; //Give back all of the information found.
+}
+
+console.log('stretch 1: ', getReviewByRating(reviews, 4.5)) //Invoke.
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
@@ -169,10 +208,33 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(arr) {
+  /* code here */
+  let foundReview = []; //Used to determine all of the found arrays.
+
+  for (let i = 0; i < arr.length; i++) { //Loop through the whole array passed into the function.
+    if (arr[i].feedback != null) { //If a rating can be found then
+      const feedBackFound = arr[i].feedback
+      let WordsFound = 0; //Used to determine how many words are found in the feedback.
+
+      //Loop through the text:
+      for (let i2 = 0; i2 < feedBackFound.length; i2++) {
+        if (feedBackFound[i2] == " ") { //If we have determine there is a space in the sentence then
+          WordsFound++; //Assume a new word is coming after that.
+          //NOTE: This method works for this particular problem just because all of the reviews don't have any " " at the end of the feedback.
+        }
+      }
+
+      if (WordsFound >= 15) { //If there a certain amount of words then
+        foundReview.push(arr[i]) //Add it to the array.
+      }
+    }
   }
-  
+
+  return foundReview; //Return that information found.
+}
+
+console.log("stretch2: ", getLongReviews(reviews));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
@@ -191,15 +253,16 @@ Use the carMaker function below to do the following:
   It would return 110 because it was created with 10 as the odometer and we added 100 to it with the drive method 
 */
 
+function carMaker(variable) {
+  /* code here */
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+  return variable;
 }
 
+console.log("stretch3: ", carMaker("Test"));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
-function foo(){
+function foo() {
   console.log('its working');
   return 'bar';
 }
